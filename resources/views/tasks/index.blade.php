@@ -2,8 +2,6 @@
 
 @section('content')
     @if (Auth::check())
-        {{ Auth::user()->name }}
-    @else
         <h1>タスク一覧</h1>
     
         @if (count($tasks) > 0)
@@ -28,5 +26,7 @@
         @endif
         {{ $tasks->links('pagination::bootstrap-4') }}
         {!! link_to_route('tasks.create', '新規タスクの投稿', [], ['class' => 'btn btn-primary']) !!}
+    @else
+        return redirect('/login');
     @endif
 @endsection
